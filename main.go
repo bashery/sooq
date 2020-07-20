@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	//"fmt"
 	"github.com/gofiber/fiber"
 )
 
@@ -12,5 +12,5 @@ func main() {
 		c.Send("Welcome in begger sooq in the world")
 	})
 
-	app.Listen(3000)
+	app.Listen(80)
 }
