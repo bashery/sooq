@@ -2,15 +2,17 @@ package main
 
 import (
 	//"fmt"
+	//"./routs"
 	"github.com/gofiber/fiber"
 )
 
+func Hello(c *fiber.Ctx) {
+	c.Send("welcom in beeger sooq in the university")
+}
 func main() {
 	app := fiber.New()
 
-	app.Get("/", func(c *fiber.Ctx) {
-		c.Send("Welcome in begger sooq in the world")
-	})
+	app.Get("/", Hello)
 
-	app.Listen(80)
+	app.Listen(9000)
 }
