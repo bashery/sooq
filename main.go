@@ -2,14 +2,14 @@ package main
 
 import (
 	//"fmt"
-	"./routs"
+	//"./routs"
 	"github.com/gofiber/fiber"
 )
 
 func main() {
 	app := fiber.New()
 
-	app.Get("/", routs.Hello)
+	app.Get("/", Hello)
 
 	app.Listen(9000)
 }
