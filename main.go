@@ -2,7 +2,7 @@ package main
 
 import (
 	//"fmt"
-	//"./routs"
+	"./routs"
 	"github.com/gofiber/fiber"
 )
 
@@ -12,7 +12,7 @@ func Hello(c *fiber.Ctx) {
 func main() {
 	app := fiber.New()
 
-	app.Get("/", Hello)
+	app.Get("/", routs.Hello)
 
 	app.Listen(9000)
 }
