@@ -6,9 +6,6 @@ import (
 	"github.com/gofiber/fiber"
 )
 
-func Hello(c *fiber.Ctx) {
-	c.Send("welcom in beeger sooq in the university")
-}
 func main() {
 	app := fiber.New()
 
