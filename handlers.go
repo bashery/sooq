@@ -2,16 +2,27 @@
 package main
 
 import (
+	"fmt"
 	"github.com/gofiber/fiber"
 )
+
+type data struct {
+	Name string `json:"name"`
+	Age  int    `json:"age"`
+}
 
 func params(c *fiber.Ctx) {
 	data := c.Params("test")
 	c.JSON(data)
 }
 func body(c *fiber.Ctx) {
-	data := c.Body()
-	c.JSON(data)
+	d := &data{}
+	if err := c.BodyParser(d); err != nil {
+		fmt.Println("error : ", err)
+	}
+	fmt.Println(d)
+	//c.JSON(d)
+	c.Send(d)
 }
 func home(c *fiber.Ctx) {
 	c.Send("Home page")
