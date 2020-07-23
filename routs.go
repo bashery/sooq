@@ -7,6 +7,8 @@ import (
 
 // all functions hold in handler.go file
 func SetRouts(app *fiber.App) {
+	// TODO authentication
+
 	app.Static("/", "./assets")
 	app.Get("/home", home)
 	app.Get("/login", login)
