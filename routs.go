@@ -1,5 +1,6 @@
-// routs.go file
 package main
+
+// routs.go file
 
 import (
 	"github.com/gofiber/fiber"
