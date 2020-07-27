@@ -8,14 +8,17 @@
         <title>Tweets</title>
     </head>
 <body>
+      <h1>{{.Title}}</h1>
+ <div id="app">
+      <nav>
+        <router-link to="/">Home</router-link>
+        <router-link to="/about">About</router-link>
+      </nav>
+      <router-view><router-view/>
+  </div>
 
-<div >
-  <h1>Hello App!</h1>
-</div>
-
-<div id="app">
-  {{ message }}
-</div>
-    <script src="app.js">// Todo : move app.js here </script>
+    <script src="app.js">
+        // Todo : move app.js here 
+    </script>
 </body>
 </html>

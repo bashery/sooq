@@ -12,8 +12,8 @@ type data struct {
 }
 
 func params(c *fiber.Ctx) {
-	data := c.Params("test")
-	c.JSON(data)
+	//data := c.Params("test")
+	//c.JSON(data)
 }
 func body(c *fiber.Ctx) {
 	d := &data{}
@@ -25,7 +25,10 @@ func body(c *fiber.Ctx) {
 	c.Send(d)
 }
 func home(c *fiber.Ctx) {
-	c.Send("Home page")
+	_ = c.Render("index", fiber.Map{
+		"Title": "Hello, World!",
+	})
+	//c.Send("Home page")
 }
 
 func login(c *fiber.Ctx) {
