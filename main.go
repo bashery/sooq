@@ -7,11 +7,11 @@ import (
 
 func main() {
 
-	engine := html.New("./assets", ".html")
+	engine := html.New("templates", ".html")
+	engine.Reload(true) //engine.Debug(true)
 
-	app := fiber.New(&fiber.Settings{
-		Views: engine,
-	})
+	app := fiber.New(&fiber.Settings{Views: engine})
+
 	SetRouts(app)
 	app.Listen(9000)
 
