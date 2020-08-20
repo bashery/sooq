@@ -13,14 +13,14 @@ func SetRouts(app *fiber.App) {
 	app.Static("/", "assets") //no static in sam path witn template
 	app.Get("/", home)
 	app.Get("/mystore", mystore)
-	app.Get("/profile", profile)
+	app.Get("/acount", acount)
 	app.Get("/stores", stores)
 	app.Get("/login", login)
 	app.Get("/logout", logout)
 	app.Get("/post", post)
-
 	app.Get("/sign", sign)
 
 	// api
-	app.Post("/api", body)
+	app.Post("/sign", signup)
+
 }
