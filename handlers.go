@@ -5,13 +5,36 @@ import (
 	"fmt"
 	//"github.com/gofiber/template/html"
 	"github.com/gofiber/fiber"
+
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
-type User struct {
-	UserName string `json:"username"`
-	Password string `json:"password"`
-	Email    string `json:"email"`
-	phon     string `json:"phon"`
+var (
+	Conn *gorm.DB
+)
+
+// api
+func signup(c *fiber.Ctx) {
+	db := Conn
+
+	// Create
+	//db.Create(&Product{Code: "L1212", Price: 1000})
+	db.AutoMigrate(&User{})
+
+	user := &User{}
+
+	// TODO : hand zero paramse; //  tweet.Title = c.Params("title"); tweet.Body = c.Params("body")
+
+	if err := c.BodyParser(*user); err != nil {
+		c.Status(503).JSON(err)
+		//fmt.Println(err)
+		return
+	}
+
+	fmt.Println(user)
+	db.Create(&User{Username: "hello", Password: "world"}) //&User{user.Username, user.Password, user.Email, user.Phon, user.Avatarlink})
+	c.Send(user)                                           // or c.Send("success")
 }
 
 func home(c *fiber.Ctx) {
@@ -48,16 +71,4 @@ func acount(c *fiber.Ctx) {
 func post(c *fiber.Ctx) {
 	c.Render("post", nil) // fiber.Map{}
 	// TODO apload item
-}
-
-// api
-
-func signup(c *fiber.Ctx) {
-	d := &User{}
-	if err := c.BodyParser(d); err != nil {
-		fmt.Println("error : ", err)
-	}
-	fmt.Println(d)
-	//c.JSON(d)
-	c.Send(d)
 }
