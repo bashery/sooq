@@ -3,9 +3,7 @@ package main
 
 import (
 	"fmt"
-	//"github.com/gofiber/template/html"
 	"github.com/gofiber/fiber"
-
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
@@ -17,24 +15,25 @@ var (
 // api
 func signup(c *fiber.Ctx) {
 	db := Conn
+	var user User
+	//db.AutoMigrate(&User{})
 
-	// Create
-	//db.Create(&Product{Code: "L1212", Price: 1000})
-	db.AutoMigrate(&User{})
-
-	user := &User{}
-
-	// TODO : hand zero paramse; //  tweet.Title = c.Params("title"); tweet.Body = c.Params("body")
-
-	if err := c.BodyParser(*user); err != nil {
-		c.Status(503).JSON(err)
+	if err := c.BodyParser(&user); err != nil {
+		c.Status(503).Send(err)
 		//fmt.Println(err)
 		return
 	}
 
-	fmt.Println(user)
-	db.Create(&User{Username: "hello", Password: "world"}) //&User{user.Username, user.Password, user.Email, user.Phon, user.Avatarlink})
-	c.Send(user)                                           // or c.Send("success")
+	fmt.Printf("user name is : %T\n", user.Username)
+	fmt.Printf("user : %T\n", user)
+	fmt.Printf("&user : %T\n", &user)
+	fmt.Println(&user)
+	user = User{Username: user.Username, Password: user.Password, Email: user.Email, Phon: user.Email, Avatarlink: user.Avatarlink}
+	db.Create(&user) //User{user.Username, user.Password, user.Email, user.Phon, user.Avatarlink})
+	c.Send(&user)    // or c.Send("success")
+
+	// Create
+	//db.Create(&Product{Code: "L1212", Price: 1000})
 }
 
 func home(c *fiber.Ctx) {
